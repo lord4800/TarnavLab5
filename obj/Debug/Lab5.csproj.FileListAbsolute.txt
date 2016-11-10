@@ -8,3 +8,6 @@ D:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.csproj.GenerateResource
 D:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.exe
 D:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.pdb
 D:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.Form2.resources
+d:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.Form3.resources
+d:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.Form4.resources
+d:\Универ\5kurs\FromBomba\Lab5\Lab5\obj\Debug\Lab5.Form5.resources

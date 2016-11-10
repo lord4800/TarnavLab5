@@ -60,7 +60,19 @@ namespace Lab5
             }
             return _findUser;
         }
-
+        public void deleteUser(User _findUser)
+        {
+            List<User> _userlist = new List<User>();
+            foreach (User _currentUser in userlist)
+            {
+                if (_currentUser != _findUser)
+                {
+                    _userlist.Add(_currentUser);
+                }
+            }
+            userlist = new List<User>();
+            userlist = _userlist;
+        }
         public void saveUserList()
         {
             Hashtable users = new Hashtable();

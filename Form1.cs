@@ -18,6 +18,7 @@ namespace Lab5
     public partial class Form1 : Form
     {
         public ListOfUser listOfUser;
+        public static User currentUser = new User("","","nouser");
         public Form1()
         {
             InitializeComponent();
@@ -102,7 +103,8 @@ namespace Lab5
 
         private void inToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form3 f3 = new Form3();
+            f3.Show();
         }
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,12 +120,14 @@ namespace Lab5
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form5 f5 = new Form5();
+            f5.Show();
         }
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form4 f4 = new Form4();
+            f4.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -133,7 +137,14 @@ namespace Lab5
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (currentUser.getUserTag() != "user")
+            {
+                this.richTextBox1.Text += ("You need Entry. Program made by Bomba \n");
+            }
+            else
+            {
+                this.richTextBox1.Text += ("Current User \"" + currentUser.getUserName() + "\" Program made by Bomba \n");
+            }
         }
     }
 }
