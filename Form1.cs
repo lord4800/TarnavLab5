@@ -50,24 +50,31 @@ namespace Lab5
             Console.WriteLine("Пользователи? " + myPrincipal.IsInRole(WindowsBuiltInRole.User));
             //Получение роли из текстовой строки
             Console.WriteLine("Администраторы? " + myPrincipal.IsInRole(@"BUILTIN\Administrators"));
-        }
-        public static string GetHash(string str)
-        {
-            //переводим строку в байт-массим
-            Byte[] strBytes = Encoding.Default.GetBytes(str);
-            //создаем объект для получения средст шифрования
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            //вычисляем хеш-представление в байтах
-            Byte[] hashBytes = md5.ComputeHash(strBytes);
-            //формируем одну цельную строку из массива
-            string hash = string.Empty;
-            foreach (var item in hashBytes)
-            {
-                hash += string.Format("{0:x2}", item);
-            }
-            return hash;
+            setPrivate(myPrincipal);
+            
         }
 
+        private void setPrivate(WindowsPrincipal _principal)
+        {
+            if (_principal.IsInRole(@"BUILTIN\Administrators"))
+            {
+                this.createToolStripMenuItem.Enabled = true;
+                this.banToolStripMenuItem.Enabled = true;
+                this.deleteToolStripMenuItem.Enabled = true;
+                this.changeToolStripMenuItem.Enabled = true;
+                this.inToolStripMenuItem.Enabled = false;
+                this.exitToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                this.createToolStripMenuItem.Enabled = false;
+                this.banToolStripMenuItem.Enabled = false;
+                this.deleteToolStripMenuItem.Enabled = false;
+                this.changeToolStripMenuItem.Enabled = true;
+                this.inToolStripMenuItem.Enabled = true;
+                this.exitToolStripMenuItem.Enabled = true;
+            }
+        }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
