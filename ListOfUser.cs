@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using System.IO;
 
 namespace Lab5
@@ -62,12 +62,21 @@ namespace Lab5
 
         public void saveUserList()
         {
-            BinaryFormatter binFormat = new BinaryFormatter();
-            // Сохранить объект в локальном файле.
-            using (Stream fStream = new FileStream("user.dat",
-               FileMode.Create, FileAccess.Write, FileShare.None))
+            Hashtable addresses = new Hashtable();
+            FileStream fs = new FileStream("DataFile.soap", FileMode.Create);
+            SoapFormatter formatter = new SoapFormatter();
+            try
             {
-                binFormat.Serialize(fStream, userlist);
+                formatter.Serialize(fs, addresses);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to serialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
             }
         }
     }
