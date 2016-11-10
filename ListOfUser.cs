@@ -83,7 +83,7 @@ namespace Lab5
 
         public void loadUserList()
         {
-            List<User> _userlist;
+            List<User> _userlist = new List<User>();
             FileStream fs = new FileStream("DataFile.soap", FileMode.Open);
             try
             {
@@ -104,12 +104,7 @@ namespace Lab5
                 userlist = _userlist;
             }
 
-            // To prove that the table deserialized correctly, 
-            // display the key/value pairs to the console.
-            foreach (User _user in _userlist)
-            {
-                
-            }
+            
         }
     }
 }
