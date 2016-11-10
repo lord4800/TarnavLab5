@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 namespace Lab5
 {
     [Serializable]
-    class User
+    public class User
     {
         private string name;
         private string password;
@@ -23,7 +23,7 @@ namespace Lab5
         public User(string _newName, string _newPassword, string _newTag)
         {
             name = _newName;
-            password = _newPassword;
+            password = GetHash(_newPassword);
             tag = _newTag;
         }
 

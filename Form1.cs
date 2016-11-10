@@ -17,6 +17,7 @@ namespace Lab5
 {
     public partial class Form1 : Form
     {
+        public ListOfUser listOfUser;
         public Form1()
         {
             InitializeComponent();
@@ -24,18 +25,23 @@ namespace Lab5
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
+            listOfUser = new ListOfUser();
             var Name = WindowsIdentity.GetCurrent().Name;
             var Token = WindowsIdentity.GetCurrent().Token;
             var IsAuthenticated = WindowsIdentity.GetCurrent().IsAuthenticated;
             var SID = WindowsIdentity.GetCurrent().User;
+            this.richTextBox1.Text = "Сведения о текущем пользователе\n";
             Console.WriteLine("Сведения о текущем пользователе\n");
+            this.richTextBox1.Text += ("Имя: " + Name + "\n");
             Console.WriteLine("Имя: " + Name);
+            this.richTextBox1.Text += ("Аутентифицирован: " + IsAuthenticated + "\n");
             Console.WriteLine("Аутентифицирован: " + IsAuthenticated);
+            this.richTextBox1.Text += ("SID: " + SID + "\n");
             Console.WriteLine("SID: " + SID);
 
+            this.richTextBox1.Text += ("\n");
 
-            
             AppDomain myDomain = Thread.GetDomain();
             //Выполняется привязка к участнику при выполнении в этом домене приложения
             myDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
@@ -44,11 +50,15 @@ namespace Lab5
             //Определяется аутентификатор принципала
             WindowsIdentity identity = (WindowsIdentity)myPrincipal.Identity;
             //Выводятся идентификационные сведения о принципале
+            this.richTextBox1.Text += ("Тип идентификации: " + identity + "\n");
             Console.WriteLine("Тип идентификации: " + identity);
+            this.richTextBox1.Text += ("Имя: " + identity.Name + "\n");
             Console.WriteLine("Имя: " + identity.Name);
             //Получение роли из перечисления WindowsBuiltInRole
             Console.WriteLine("Пользователи? " + myPrincipal.IsInRole(WindowsBuiltInRole.User));
+            this.richTextBox1.Text += ("Пользователи? " + myPrincipal.IsInRole(WindowsBuiltInRole.User) + "\n");
             //Получение роли из текстовой строки
+            this.richTextBox1.Text += ("Администраторы? " + myPrincipal.IsInRole(@"BUILTIN\Administrators") + "\n");
             Console.WriteLine("Администраторы? " + myPrincipal.IsInRole(@"BUILTIN\Administrators"));
             setPrivate(myPrincipal);
             
@@ -97,7 +107,7 @@ namespace Lab5
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2();
+            Form2 f2 = new Form2(listOfUser);
             f2.Show();
         }
 
@@ -118,7 +128,7 @@ namespace Lab5
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

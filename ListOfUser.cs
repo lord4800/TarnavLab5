@@ -11,9 +11,9 @@ using System.IO;
 namespace Lab5
 {
     [Serializable]
-    class ListOfUser
+    public class ListOfUser
     {
-        private List<User> userlist;
+        public List<User> userlist;
         public ListOfUser()
         {
             userlist = new List<User>();
