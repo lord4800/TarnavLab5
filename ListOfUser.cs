@@ -83,7 +83,33 @@ namespace Lab5
 
         public void loadUserList()
         {
+            List<User> _userlist;
+            FileStream fs = new FileStream("DataFile.soap", FileMode.Open);
+            try
+            {
+                SoapFormatter formatter = new SoapFormatter();
 
+                // Deserialize the hashtable from the file and 
+                // assign the reference to the local variable.
+                _userlist = (List<User>)formatter.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+                userlist = _userlist;
+            }
+
+            // To prove that the table deserialized correctly, 
+            // display the key/value pairs to the console.
+            foreach (User _user in _userlist)
+            {
+                
+            }
         }
     }
 }
