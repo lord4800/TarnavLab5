@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.IO;
 
 namespace Lab5
@@ -62,12 +63,12 @@ namespace Lab5
 
         public void saveUserList()
         {
-            Hashtable addresses = new Hashtable();
+            //Hashtable addresses = new Hashtable();
             FileStream fs = new FileStream("DataFile.soap", FileMode.Create);
             SoapFormatter formatter = new SoapFormatter();
             try
             {
-                formatter.Serialize(fs, addresses);
+                formatter.Serialize(fs, userlist);
             }
             catch (SerializationException e)
             {
@@ -78,6 +79,11 @@ namespace Lab5
             {
                 fs.Close();
             }
+        }
+
+        public void loadUserList()
+        {
+
         }
     }
 }
