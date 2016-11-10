@@ -32,6 +32,7 @@ namespace Lab5
         private void button1_Click(object sender, EventArgs e)
         {
             User newUser = new User(textBox1.Text, textBox2.Text, "user");
+            listOfUser.loadUserList();
             listOfUser.addNewUser(newUser);
             listOfUser.saveUserList();
             this.Close();

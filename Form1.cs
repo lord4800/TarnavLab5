@@ -77,7 +77,7 @@ namespace Lab5
             }
             else
             {
-                this.createToolStripMenuItem.Enabled = false;
+                this.createToolStripMenuItem.Enabled = true;
                 this.banToolStripMenuItem.Enabled = false;
                 this.deleteToolStripMenuItem.Enabled = false;
                 this.changeToolStripMenuItem.Enabled = true;

@@ -63,12 +63,16 @@ namespace Lab5
 
         public void saveUserList()
         {
-            //Hashtable addresses = new Hashtable();
+            Hashtable users = new Hashtable();
+            foreach (User _user in userlist)
+            {
+                users.Add(_user.getUserName(),_user);
+            }
             FileStream fs = new FileStream("DataFile.soap", FileMode.Create);
             SoapFormatter formatter = new SoapFormatter();
             try
             {
-                formatter.Serialize(fs, userlist);
+                formatter.Serialize(fs, users);
             }
             catch (SerializationException e)
             {
@@ -83,7 +87,7 @@ namespace Lab5
 
         public void loadUserList()
         {
-            List<User> _userlist = new List<User>();
+            Hashtable users = null;
             FileStream fs = new FileStream("DataFile.soap", FileMode.Open);
             try
             {
@@ -91,7 +95,7 @@ namespace Lab5
 
                 // Deserialize the hashtable from the file and 
                 // assign the reference to the local variable.
-                _userlist = (List<User>)formatter.Deserialize(fs);
+                users = (Hashtable)formatter.Deserialize(fs);
             }
             catch (SerializationException e)
             {
@@ -101,10 +105,16 @@ namespace Lab5
             finally
             {
                 fs.Close();
-                userlist = _userlist;
+                //userlist = _userlist;
+            }
+            foreach (DictionaryEntry de in users)
+            {
+                User locuser = new User();
+                locuser = (User)de.Value;
+                Console.WriteLine(locuser.getUserName() + "\n");
+                userlist.Add((User)de.Value);
             }
 
-            
         }
     }
 }
